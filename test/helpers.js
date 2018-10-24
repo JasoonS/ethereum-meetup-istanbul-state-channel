@@ -13,4 +13,9 @@ const assertRevert = async promise => {
     assert(revertOrAssertFound, `Expected "revert", got ${error} instead`)
   }
 }
-module.exports = { should, EVMThrow, assertRevert }
+const getContractCode = (contractAddress, web3) => new Promise(
+  (resolve, reject) => web3.eth.getCode(contractAddress, (e,r) => {
+    resolve(r)
+  })
+)
+module.exports = { should, EVMThrow, assertRevert, getContractCode }
