@@ -1,0 +1,22 @@
+{
+  "name": "y",
+  "version": "1.0.0",
+  "description": "state-channel",
+  "main": "truffle-config.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JasoonS/ethereum-meetup-istanbul-atomic-swap.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JasoonS/ethereum-meetup-istanbul-atomic-swap/issues"
+  },
+  "homepage": "https://github.com/JasoonS/ethereum-meetup-istanbul-atomic-swap#readme"
+}
