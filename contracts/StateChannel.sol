@@ -1,7 +1,7 @@
 pragma solidity ^0.4.23;
 
 contract StateChannel {
-
+  event TimeOut(address sender);
   address public channelSender;
   address public channelRecipient;
   uint public startDate;
@@ -16,7 +16,7 @@ contract StateChannel {
   }
 
   function getSigner(bytes32 h, uint8 v, bytes32 r, bytes32 s) pure public returns(address) {
-        return ecrecover(h, v, r, s);
+    return ecrecover(h, v, r, s);
   }
 
   function closeChannel(bytes32 h, uint8 v, bytes32 r, bytes32 s, uint value) public{
@@ -49,7 +49,7 @@ contract StateChannel {
 
   function ChannelTimeout() public {
     require(startDate + channelTimeout < now);
-
+    emit TimeOut(channelSender);
     selfdestruct(channelSender);
   }
 
