@@ -1,1 +1,13 @@
-node_modules
+### Application ###
+node_modules/
+build/
+
+### MacOS ###
+**/.DS_Store
+.DS_Store
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr

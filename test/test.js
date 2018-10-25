@@ -132,6 +132,23 @@ contract("StateChannel", (accounts) => {
     it('should revert if the Timout is still active', async () => {
       await assertRevert(SC.ChannelTimeout.sendTransaction({from:sender}))
     })
+    it('should terminate if the Timout has already passed after startDate', async () => {
+      const startDate = await SC.startDate.call()
+      await timeManager.increaseTime(timeManager.duration.seconds(1000))
+      const txHash = await  SC.ChannelTimeout.sendTransaction({from:sender})
+      const result  = await truffleAssert.createTransactionResult(SC,txHash)
+      web3.eth.getCode(SC.address, res => {
+        console.log(res);
+      });
+
+      await truffleAssert.eventEmitted(result,'TimeOut', (ev) => {
+        senderAddress = ev.sender
+        return senderAddress
+      })
+
+      senderAddress.should.be.equal(sender)
+    })
   })
+
 
 })
